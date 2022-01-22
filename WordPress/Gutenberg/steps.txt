@@ -1,0 +1,65 @@
+npx @wordpress/create-block giveaway
+
+4- steps to make innerBlock : 
+{
+1- import { useBlockProps } from '@wordpress/block-editor';
+
+2- defin tamble ->
+    {
+            const MY_TAMBLE =[
+            ['core/image',{}],
+            ['core/heading',{placeholder: 'giveaway'}],
+            ['core/paragraph',{placeholder: 'giveaway des'}],
+            ['core/button',{placeholder: 'call me...'}],
+        ]
+    }
+3-<InnerBlocks template={MY_TAMBLE} templateLock="insert"/>
+    {   templateLock lock the inserts or changing in the block 
+		templateLock="insert"
+		templateLock="all"
+    }
+
+4- in the save file ->
+    <InnerBlocks.Content/>
+
+}
+step 2 :
+define som attributes
+or defin inner
+
+step 3 :
+in edit file
+
+semples :
+-> like this semple
+
+note:
+{
+to add props to edit function ->
+    export default function Edit({attributes, setAttributes})
+no need to import them from index file ->
+edit: Edit,
+}
+
+{
+    to add props to save function ->
+    save(props)
+
+    to use it ->
+    value= {props.attributes.title}
+}
+
+{
+    to defin custom attributes ->
+        attributes:{
+            title:{
+                type:'string',
+                source:'html',
+                selector:'h2',
+            },
+            titleColor:{
+                type:'string',
+                default:'#333'
+            },
+        }
+}

@@ -1,0 +1,45 @@
+- step one
+const cubTextureLoader = new THREE.CubeTextureLoader()
+
+- step two
+/** p for positive and n for negative 
+* six photo's for the environment
+*/
+
+const environmentMap = cubTextureLoader.load([
+  './sunFlower/1/px.jpg',
+  './sunFlower/1/nx.jpg',
+  './sunFlower/1/py.jpg',
+  './sunFlower/1/ny.jpg',
+  './sunFlower/1/pz.jpg',
+  './sunFlower/1/nz.jpg'
+])
+
+- step THREE
+scene.background = environmentMap
+
+/**
+* to adjust the light
+*/
+
+- step one
+
+const updateAllMatrials = ()=>{
+    scene.traverse((child)=>{
+        if(child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial){
+            child.material.envMap = environmentMap
+            child.material.envMapIntensity = 3
+        }
+    })
+}
+
+-step two 
+
+** scene
+scene.environment = environmentMap
+environmentMap.encoding = THREE.sRGBEncoding
+
+** renderer
+// (there is many option for that)
+renderer.physicallyCorrectLights = true 
+renderer.toneMapping = THREE.ACESFilmicToneMapping
