@@ -1,0 +1,22 @@
+** img err
+import {withNotices } from '@wordpress/components';
+
+export default withNotices( Edit );
+
+function Edit( {noticeOperations, noticeUI } ) {
+
+    const onUploadError = ( message ) => {
+		noticeOperations.removeAllNotices();
+		noticeOperations.createErrorNotice( message );
+	};
+
+<MediaPlaceholder
+    icon="admin-users"
+    onSelect={ onSelectImage }
+    onSelectURL={ onSelectURL }
+    onError={ onUploadError }
+    accept="image/*"
+    allowedTypes={ [ 'image' ] }
+    disableMediaButtons={ url }
+    notices={ noticeUI }
+/>

@@ -1,0 +1,3 @@
+npx @wordpress/create-block <packg name>
+
+npm i classnames

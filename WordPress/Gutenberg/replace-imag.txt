@@ -1,0 +1,12 @@
+// this in tool bar with all attrputes
+
+<MediaReplaceFlow
+    name={ __( 'Replace Image', 'team-members' ) }
+    onSelect={ onSelectImage }
+    onSelectURL={ onSelectURL }
+    onError={ onUploadError }
+    accept="image/*"
+    allowedTypes={ [ 'image' ] }
+    mediaId={ id } // give the image checked in the miedia 
+    mediaURL={ url } 
+/>
