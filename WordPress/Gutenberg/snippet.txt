@@ -1,0 +1,72 @@
+/**Message for lampen category */
+
+// Message for specific category
+add_action( 'woocommerce_before_main_content', 'category_message', 20 );
+function category_message() {
+ if ( is_product_category( 'lampen' ) ) { // Change your vategory slug here
+echo '<h1 class="woo-h1-cat  kt-adv-heading_b29613-15 wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading_b29613-15" data-aos-easing="ease-out-quart" data-aos-once="true">
+    Unieke & duurzame lampen</h1>
+	<p class="kt-adv-heading_eec0ac-b3 wp-block-kadence-advancedheading has-theme-palette-1-color has-text-color" >
+        In onze werkplaats ontwerpen én maken wij unieke, duurzame lampen van hergebruikte en / of duurzame materialen. Zo zijn bijvoorbeeld onze hanglampen gemaakt van gebruikte (plastic-) bierfusten.
+        <br>
+        Wil je komen kijken? Leuk! Plan direct een afspraak via onze
+        <a href="https://iamrecycled.nl/plan-je-afspraak/" target="_blank" rel="noopener">&nbsp;</a>
+        <strong>
+        <a href="https://iamrecycled.nl/plan-je-afspraak/" target="_blank" rel="noopener">online agenda</a>
+        .
+    </strong> 
+    Heb je vraag? Neem contact op via
+    <strong>&nbsp;<a href="https://wa.me/31683890039" target="_blank" rel="noreferrer noopener">
+        WhatsApp</a>&nbsp;of bel&nbsp;<a href="tel:024-67 58 142">024-67 58 142</a></strong>&nbsp;
+   <br> </p>'; // Change your message here
+}
+	// Message for Meubelknopjes 
+	if ( is_product_category( 'Meubelknopjes' ) ) { // Change your vategory slug here
+echo '<h1 class="woo-h1-cat kt-adv-heading_b29613-15 wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading_b29613-15" data-aos-easing="ease-out-quart" data-aos-once="true">
+    Meubelknopjes
+	</h1>
+	<p class="kt-adv-heading_eec0ac-b3 wp-block-kadence-advancedheading has-theme-palette-1-color has-text-color" >
+	Mooie kleurrijke vintage meubelknopjes. Hierdoor wordt het recyclen of oppimpen van je meubels nog gemakkelijker en leuker.
+	</p>'; // Change your message here
+}
+}
+
+/**sale badge percentage*/
+
+add_action( 'woocommerce_sale_flash', 'sale_badge_percentage', 25 );
+ 
+function sale_badge_percentage() {
+   global $product;
+  
+	   if(! $product->managing_stock()&& ! $product->is_in_stock()){
+		   echo "<span class='envo-out-of-stock'>Uitverkocht</span>";
+	   }
+	   
+    if ( ! $product->is_on_sale()) {
+		return;	   
+	}else{
+	
+   if ( $product->is_type( 'simple' ) ) {
+      $max_percentage = ( ( $product->get_regular_price() - $product->get_sale_price() ) / $product->get_regular_price() ) * 100;
+   } elseif ( $product->is_type( 'variable' ) ) {
+      $max_percentage = 0;
+      foreach ( $product->get_children() as $child_id ) {
+         $variation = wc_get_product( $child_id );
+         $price = $variation->get_regular_price();
+         $sale = $variation->get_sale_price();
+         if ( $price != 0 && ! empty( $sale ) ) $percentage = ( $price - $sale ) / $price * 100;
+         if ( $percentage > $max_percentage ) {
+            $max_percentage = $percentage;
+         }
+      }
+   }
+	if ( $max_percentage > 0 ){
+		if (is_product()){
+			echo "<span class='envo_onsale_span'>-" . round($max_percentage) . "%</span>"; // If you would like to show -40% off then add text after % sign  
+		}else{
+			 echo "<span class='envo_onsale_cat_span'>-" . round($max_percentage) . "%</span>"; // If you would like to show -40% off then add text after % sign  
+		}
+	}
+	}
+   
+}
