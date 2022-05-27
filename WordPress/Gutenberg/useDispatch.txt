@@ -1,0 +1,17 @@
+import { useDispatch } from '@wordpress/data';
+
+const { editPost } = useDispatch('core/editor');
+
+<PanelBody title={__('Subtitle Options', 'blocks-course')}>
+
+    <TextControl
+        label={__('Subtitle', 'blocks-course')}
+        value={subtitleValue}
+        onChange={(value) => {
+            editPost({
+                meta: { _blocks_course_post_subtitle: value },
+            });
+        }}
+    />
+
+</PanelBody>

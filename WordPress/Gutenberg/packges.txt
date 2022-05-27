@@ -1,3 +1,7 @@
 npx @wordpress/create-block <packg name>
 
+** fromat as wordpress decument
+npx wp-scripts format
+
 npm i classnames
+

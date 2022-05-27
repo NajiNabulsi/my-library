@@ -1,0 +1,21 @@
+block.json
+in the parent block
+"providesContext": {
+		"blocks-course/team-members-columns": "columns"
+	},
+
+index.js
+add a new key 
+usesContext: [ 'blocks-course/team-members-columns' ],
+
+// in Edit function add a new as attributes
+function Edit( {
+	attributes,
+	setAttributes,
+	context,
+	noticeOperations,
+	noticeUI,
+	isSelected,
+} )
+
+{ context[ 'blocks-course/team-members-columns' ] }

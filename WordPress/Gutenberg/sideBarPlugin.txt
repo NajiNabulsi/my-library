@@ -1,0 +1,60 @@
+// Document for all Plugin
+https://developer.wordpress.org/block-editor/reference-guides/packages/packages-edit-post/
+
+
+import {
+	PluginSidebar,
+	PluginDocumentSettingPanel,
+	PluginPostStatusInfo,
+	PluginPrePublishPanel,
+	PluginPostPublishPanel,
+	PluginMoreMenuItem,
+	PluginBlockSettingsMenuItem,
+} from '@wordpress/edit-post';
+
+// to add in the separate side bar
+<PluginSidebar
+    name="meta-fields-sidebar"
+    icon="admin-settings"
+    title={__('Post Options', 'blocks-course')}
+>
+    hbiuhiihou
+</PluginSidebar>
+
+// add in the side bar 
+<PluginDocumentSettingPanel
+    title="My Panel"
+    icon="admin-collapse"
+>
+    <p>Document Setting Panel</p>
+</PluginDocumentSettingPanel>
+
+// add in the Status ifo in the side bar
+<PluginPostStatusInfo>
+    <p>Status info content</p>
+</PluginPostStatusInfo>
+
+// add in the side bar after publish two components for the same side bar
+<PluginPrePublishPanel title="Pre publish title">
+    Pre publish content
+</PluginPrePublishPanel>
+
+<PluginPostPublishPanel title="Post publish title">
+    Post publish content
+</PluginPostPublishPanel>
+
+// side bar in the more Item
+<PluginMoreMenuItem
+    icon="admin-customizer"
+    onClick={() => alert(true)}
+>
+    Plugin Item
+</PluginMoreMenuItem>
+
+// to add in the side bar at the top of the block
+<PluginBlockSettingsMenuItem
+    allowedBlocks={['core/paragraph']} // to make it allowed for specific block 
+    icon="admin-home"
+    label="New Item"
+    onClick={() => alert(true)}
+/>
